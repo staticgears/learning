@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertTrue;
 
 /**
  * Date: 05/09/15
- *
+ * This is not very important
  * @author keith
  */
 public class LinkedListTest {

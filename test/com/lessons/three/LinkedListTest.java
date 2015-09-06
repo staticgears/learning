@@ -9,6 +9,7 @@ import java.util.Iterator;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
+import org.junit.Ignore;
 
 /**
  * Date: 05/09/15
@@ -25,6 +26,8 @@ public class LinkedListTest {
         }
     }
 
+
+    @Ignore
     @Test
     public void testGetHead() {
         Collection<String> list1 = create();

@@ -9,8 +9,8 @@ import java.util.Iterator;
  * @author kbanks
  */
 public class MyDataStructure implements Iterable<String> {
-    private int cursor;
-    private final String[] data;
+    int cursor;
+    final String[] data;
 
     public MyDataStructure() { this(10); }
     public MyDataStructure(int size) {
@@ -19,10 +19,10 @@ public class MyDataStructure implements Iterable<String> {
     }
 
     public void push(String value) {
-        if(cursor > data.length-1) {
-            data[++cursor] = value;
-        } else {
+        if(cursor >= data.length) {
             throw new IllegalStateException("I am full");
+        } else {
+            data[++cursor] = value;
         }
     }
 
@@ -30,7 +30,10 @@ public class MyDataStructure implements Iterable<String> {
         if(isEmpty()) {
             throw new IllegalStateException("attempted to go past the end");
         }
-        return data[cursor--];
+        String result = data[cursor];
+        data[cursor] = null;
+        cursor--;
+        return result;
 
 //        String result = data[cursor];
 //        cursor--;
@@ -39,8 +42,11 @@ public class MyDataStructure implements Iterable<String> {
 
     public boolean isEmpty() { return cursor == -1; }
 
-    public Iterator<String> iterator() {
+    /** Everything above this is the "data structure implementation, things below here are related to iterators **/
 
-        return null;
+    //From iteratable
+    @Override
+    public Iterator<String> iterator() {
+        return new MyDataStructureIterator(this);
     }
 }
